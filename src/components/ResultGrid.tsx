@@ -4,7 +4,7 @@ import { ImageCard } from "./ImageCard";
 
 export function ResultGrid() {
   const { q, text, pos, page, update } = useQueryState();
-  const { data, loading, err, hasPrev, hasNext } = useGiphySearch(q, page);
+  const { data, total, loading, err, hasPrev, hasNext } = useGiphySearch(q, page);
 
   if (!q) return <p>What's on the menu today?</p>;
   if (loading) return <p>Making coffee!</p>;
@@ -30,11 +30,23 @@ export function ResultGrid() {
         ))}
       </div>
       <div className="pager">
-        <button onClick={() => update({ page: page - 1 })} disabled={!hasPrev} aria-label="Previous">
+        <button
+          onClick={() => update({ page: page - 1 })}
+          disabled={!hasPrev}
+          aria-label="Previous"
+          aria-disabled={!hasPrev}
+        >
           Prev
         </button>
-        <span>Page {page + 1}</span>
-        <button onClick={() => update({ page: page + 1 })} disabled={!hasNext} aria-label="Next">
+        <span>
+          Page {page + 1} / {Math.ceil(total / 3)}
+        </span>
+        <button
+          onClick={() => update({ page: page + 1 })}
+          disabled={!hasNext}
+          aria-label="Next"
+          aria-disabled={!hasNext}
+        >
           Next
         </button>
       </div>

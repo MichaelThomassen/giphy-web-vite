@@ -30,7 +30,7 @@ export function SearchForm() {
           <option value="below">Below image</option>
         </select>
       </label>
-      <button type="submit" disabled={!locQ.trim()}>
+      <button type="submit" disabled={!locQ.trim()} aria-label="Search" aria-disabled={!locQ.trim()}>
         Search
       </button>
     </form>
