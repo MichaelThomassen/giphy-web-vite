@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import type { GiphyResponse, GiphyItem } from "../types";
 
-//Should be put in an .env file at some point
+// API endpoint and key from environment
 const API = "https://api.giphy.com/v1/gifs/search";
-const KEY = "1bkG7ky5cmw5SLyvNfElcR1iYVzs38Zq";
+const KEY = import.meta.env.VITE_GIPHY_API_KEY;
 
 export function useGiphySearch(q: string, page: number) {
   const [data, setData] = useState<GiphyItem[] | null>(null);
