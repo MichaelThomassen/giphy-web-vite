@@ -3,20 +3,20 @@ import { type Pos, useQueryState } from "../hooks/useSearchParamsState";
 
 export function SearchForm() {
   const { q, text, pos, update } = useQueryState();
-  const [locQ, setLocQ] = useState(q);
+  const [locQuery, setLocQuery] = useState(q);
   const [locText, setLocText] = useState(text);
   const [locPos, setLocPos] = useState<Pos>(pos);
 
   function onSubmit(e: FormEvent) {
     e.preventDefault();
-    update({ q: locQ.trim(), text: locText, pos: locPos, page: 0 });
+    update({ q: locQuery.trim(), text: locText, pos: locPos, page: 0 });
   }
 
   return (
     <form onSubmit={onSubmit} aria-label="Search images">
       <label>
         Query
-        <input value={locQ} onChange={(e) => setLocQ(e.target.value)} placeholder="corgi puppy" />
+        <input value={locQuery} onChange={(e) => setLocQuery(e.target.value)} placeholder="corgi puppy" />
       </label>
       <label>
         Text
@@ -30,7 +30,7 @@ export function SearchForm() {
           <option value="below">Below image</option>
         </select>
       </label>
-      <button type="submit" disabled={!locQ.trim()} aria-label="Search" aria-disabled={!locQ.trim()}>
+      <button type="submit" disabled={!locQuery.trim()} aria-label="Search" aria-disabled={!locQuery.trim()}>
         Search
       </button>
     </form>
